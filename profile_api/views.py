@@ -144,24 +144,3 @@ class UserProfileFeedViewSet(viewsets.ModelViewSet):
         """Sets the user profile to the logged in user"""
         serializer.save(user_profile=self.request.user)
 
-def fetch_tweets(request):
-    # Twitter API credentials
-    consumer_key = 'XYDeFd0WTHXQHxvdhHMAPdWTM'
-    consumer_secret = 'GCdnP2o8Isd4fQmILyazRlW6e9Dr8azwWD0ZH8LPG0oslsYNOC'
-    access_token = '1403750537183383552-9IT0ZTzHcjDgqMXuDVRurd5wFNCoAG'
-    access_token_secret = '3PnxiqLxTK6PvQ28YnQ9oc62BQi71y2slkNQE3lzQNuCp'
-
-    # Authenticate to Twitter API
-    auth = tweepy.OAuth1UserHandler(consumer_key, consumer_secret, access_token, access_token_secret)
-    api = tweepy.API(auth)
-
-    # Fetch tweets from two public accounts (example: 10 tweets from each account)
-    tweets = api.home_timeline(count=10)
-    # account1_tweets = api.user_timeline(screen_name='Virat Kohli', count=10)
-    # account2_tweets = api.user_timeline(screen_name='Sachin Tendulkar', count=10)
-
-    # Combine tweets from both accounts
-    tweets = account1_tweets + account2_tweets
-
-    # Render the tweets in a template
-    return render(request, 'tweets.html', {'tweets': tweets})
