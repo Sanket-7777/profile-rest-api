@@ -22,8 +22,6 @@ from rest_framework import filters
 
 from django.shortcuts import render
 
-import tweepy
-
 from profile_api import serializers
 
 class HelloApiView(APIView):
